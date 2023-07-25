@@ -11,7 +11,9 @@
     "test:ui": "vitest --ui",
     "format": "prettier \"src/**/*.{js,jsx,ts,tsx,css,scss}\" --write",
     "lint": "eslint src --max-warnings=0",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "lint:fix": "eslint src --fix --max-warnings=0",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -22,6 +24,9 @@
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@commitlint/prompt-cli": "^17.6.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^20.4.2",
@@ -39,6 +44,8 @@
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "happy-dom": "^10.5.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",
     "prettier": "3.0.0",
     "typescript": "^5.1.6",

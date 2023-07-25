@@ -17,6 +17,7 @@ dist-ssr
 
 # debug
 npm-debug.log*
+.eslintcache
 
 # local env files
 .env
