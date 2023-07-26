@@ -1,12 +1,8 @@
-import { DynamicWidget } from '@dynamic-labs/sdk-react';
-import { DynamicAuthProvider } from 'providers';
+import { DynamicAuthProvider, RoutingProvider } from 'providers';
 
 const App = () => (
   <DynamicAuthProvider>
-    <div>
-      <DynamicWidget />
-      <div>App</div>
-    </div>
+    <RoutingProvider />
   </DynamicAuthProvider>
 );
 
