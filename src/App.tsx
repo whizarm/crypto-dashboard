@@ -1,16 +1,13 @@
-import { DynamicContextProvider, DynamicWidget } from '@dynamic-labs/sdk-react';
+import { DynamicWidget } from '@dynamic-labs/sdk-react';
+import { DynamicAuthProvider } from 'providers';
 
 const App = () => (
-  <DynamicContextProvider
-    settings={{
-      environmentId: import.meta.env.VITE_DYNAMIC_SDK_KEY,
-    }}
-  >
+  <DynamicAuthProvider>
     <div>
       <DynamicWidget />
       <div>App</div>
     </div>
-  </DynamicContextProvider>
+  </DynamicAuthProvider>
 );
 
 export default App;
