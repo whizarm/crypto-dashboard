@@ -1,8 +1,14 @@
-import { DynamicAuthProvider, RoutingProvider } from 'providers';
+import {
+  DynamicAuthProvider,
+  MuiThemeProvider,
+  RoutingProvider,
+} from 'providers';
 
 const App = () => (
   <DynamicAuthProvider>
-    <RoutingProvider />
+    <MuiThemeProvider>
+      <RoutingProvider />
+    </MuiThemeProvider>
   </DynamicAuthProvider>
 );
 
