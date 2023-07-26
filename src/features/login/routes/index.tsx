@@ -4,8 +4,9 @@ export const LOGIN_ROUTE = '/login';
 
 const loginRoutes = [
   {
-    path: '/login',
+    path: LOGIN_ROUTE,
     element: <Login />,
+    title: '',
   },
 ];
 
