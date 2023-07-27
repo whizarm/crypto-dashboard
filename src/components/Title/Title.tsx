@@ -6,7 +6,7 @@ interface TitleProps {
 }
 
 export const Title = (props: TitleProps) => (
-  <Typography component="h2" variant="h6" color="primary" gutterBottom>
+  <Typography component="h2" variant="h6" color="primary">
     {props.children}
   </Typography>
 );

@@ -11,6 +11,7 @@ export const Card = ({ children, height, title }: Props) => (
   <Paper
     sx={{
       p: 2,
+      rowGap: 1.5,
       display: 'flex',
       flexDirection: 'column',
       height,
