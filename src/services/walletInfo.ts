@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { WalletInfoData, WalletInfoRequestParams } from './types/walletInfo';
+import {
+  WalletInfoData,
+  WalletInfoHookParams,
+  WalletInfoRequestParams,
+} from './types/walletInfo';
 import { getEthplorerWalletInfoUrl } from './eth/ethplorer';
 
 export const walletInfoApi = createApi({
@@ -8,16 +12,33 @@ export const walletInfoApi = createApi({
   endpoints: (builder) => ({
     getWalletInfoByAddressAndNetwork: builder.query<
       WalletInfoData,
-      WalletInfoRequestParams
+      WalletInfoHookParams
     >({
-      query: ({ address, blockchain }: WalletInfoRequestParams) => {
-        const queryParams = { address, blockchain };
-        switch (blockchain) {
-          case 'Ethereum':
-            return getEthplorerWalletInfoUrl(queryParams);
-          default:
-            throw new Error('This blockchain is not yet supported');
-        }
+      queryFn: async (
+        { addresses, blockchain }: WalletInfoHookParams,
+        _api,
+        _extraOptions,
+        fetchWithBQ,
+      ) => {
+        const getUrl = (queryParams: WalletInfoRequestParams) => {
+          switch (queryParams.blockchain) {
+            case 'Ethereum':
+              return getEthplorerWalletInfoUrl(queryParams);
+            default:
+              throw new Error('This blockchain is not yet supported');
+          }
+        };
+
+        const requestPromises = addresses.map((address) =>
+          fetchWithBQ(getUrl({ address, blockchain })),
+        );
+        const results = await Promise.allSettled(requestPromises);
+
+        return {
+          data: results.map((r) =>
+            r.status === 'fulfilled' ? r?.value.data : {},
+          ) as WalletInfoData,
+        };
       },
     }),
   }),

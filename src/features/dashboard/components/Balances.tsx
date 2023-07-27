@@ -1,11 +1,12 @@
 import { useDynamicContext } from '@dynamic-labs/sdk-react';
+import { Card } from 'components/Card';
 
 const Balances = () => {
   const { networkConfigurations } = useDynamicContext();
   const networks = networkConfigurations?.evm;
 
   return (
-    <>
+    <Card title="Tokens" sx={{ height: '100%' }}>
       {networks?.map((network) => {
         const { networkId, iconUrls } = network;
         return (
@@ -14,7 +15,7 @@ const Balances = () => {
           </div>
         );
       })}
-    </>
+    </Card>
   );
 };
 

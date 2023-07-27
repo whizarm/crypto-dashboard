@@ -5,7 +5,7 @@ import { Title } from 'components/Title';
 type Props = {
   height?: number;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   sx?: SxProps;
 };
 
