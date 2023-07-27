@@ -8,11 +8,12 @@ import {
   SelectChangeEvent,
   MenuItem,
 } from '@mui/material';
-import { DEFAULT_BLOCKCHAIN, SUPPORTED_BLOCKCHAINS } from 'config';
+import { DEFAULT_BLOCKCHAIN } from 'config';
 import {
   TransactionsRequestParams,
   useGetTransactionsByAddressAndNetworkQuery,
 } from 'services';
+import { useSupportedBlockchains } from 'hooks';
 import { Card } from 'components/Card';
 import { ToggleButtons } from 'components/ToggleButtons';
 import { CryptoAddress } from 'components/CryptoAddress';
@@ -20,7 +21,8 @@ import TransactionsTable from './TransactionsTable';
 import { transformDataForTable } from '../utils/transformDataForTable';
 
 const Transactions = () => {
-  const { connectedWallets, networkConfigurations } = useDynamicContext();
+  const { connectedWallets } = useDynamicContext();
+  const supportedBlockchains = useSupportedBlockchains();
 
   const initialParams: TransactionsRequestParams = {
     address: connectedWallets[0]?.address ?? '',
@@ -75,16 +77,6 @@ const Transactions = () => {
       offset: parseInt(value),
     }));
   };
-
-  const supportedBlockchains = networkConfigurations?.evm
-    ?.filter(
-      ({ vanityName }) =>
-        !!vanityName && SUPPORTED_BLOCKCHAINS.includes(vanityName),
-    )
-    .map(({ iconUrls, vanityName }) => ({
-      iconUrl: iconUrls[0],
-      value: vanityName ?? '',
-    }));
 
   const dataForTable = transformDataForTable(data);
 

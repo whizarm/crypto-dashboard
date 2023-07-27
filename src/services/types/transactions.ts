@@ -1,5 +1,3 @@
-export type SupportedBlockchains = 'Ethereum';
-
 export interface TransactionsRequestParams {
   address: string;
   blockchain: string;
