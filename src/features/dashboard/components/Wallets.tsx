@@ -1,7 +1,6 @@
 import { useDynamicContext } from '@dynamic-labs/sdk-react';
-import { Box, Button, Typography } from '@mui/material';
-import { CopyToClipboard } from 'components/CopyToClipboard';
-import { CryptoAddress } from 'components/CryptoAddress';
+import { Box, Button } from '@mui/material';
+import { CryptoAddressWithClipboard } from 'components/CryptoAddress';
 import AddCardIcon from '@mui/icons-material/AddCard';
 
 const Wallets = () => {
@@ -20,14 +19,12 @@ const Wallets = () => {
       >
         {connectedWallets.map(
           ({ address, connector: { connectedChain }, id }) => (
-            <Box key={id} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography component="span" color="text.secondary">
-                [{connectedChain}]
-              </Typography>
-              &nbsp;
-              <CryptoAddress>{address}</CryptoAddress>
-              <CopyToClipboard value={address} />
-            </Box>
+            <CryptoAddressWithClipboard
+              key={id}
+              connectedChain={connectedChain}
+            >
+              {address}
+            </CryptoAddressWithClipboard>
           ),
         )}
       </Box>
