@@ -3,7 +3,7 @@ import {
   TransactionsData,
   TransactionsRequestParams,
 } from './types/transactions';
-import { getEtherscanUrl } from './api/ethereum';
+import { getEtherscanUrl } from './eth/etherscan';
 
 export const transactionsApi = createApi({
   reducerPath: 'transactionsApi',
