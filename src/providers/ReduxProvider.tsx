@@ -1,13 +1,18 @@
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit/';
 import { transactionsApi } from 'services/transactions';
+import { walletInfoApi } from 'services/walletInfo';
 
 export const store = configureStore({
   reducer: {
     [transactionsApi.reducerPath]: transactionsApi.reducer,
+    [walletInfoApi.reducerPath]: walletInfoApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([transactionsApi.middleware]),
+    getDefaultMiddleware().concat([
+      transactionsApi.middleware,
+      walletInfoApi.middleware,
+    ]),
 });
 
 type Props = {
