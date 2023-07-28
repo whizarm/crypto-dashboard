@@ -1,11 +1,14 @@
 const SUPPORTED_BLOCKCHAINS = ['Ethereum', 'Polygon']; // corresponding to vanityName property of blockchain in Dynamic SDK
 const DEFAULT_BLOCKCHAIN = 'Ethereum';
+
+const DISPLAY_MAX_FRACTION_DIGITS = 9;
 const DRAWER_WIDTH = 240;
 const SNACKBAR_AUTOHIDE_TIME = 1000;
 
 export {
-  SUPPORTED_BLOCKCHAINS,
   DEFAULT_BLOCKCHAIN,
+  DISPLAY_MAX_FRACTION_DIGITS,
   DRAWER_WIDTH,
   SNACKBAR_AUTOHIDE_TIME,
+  SUPPORTED_BLOCKCHAINS,
 };

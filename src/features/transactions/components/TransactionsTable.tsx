@@ -33,6 +33,7 @@ const TransactionsTable = ({
   handleChangeRowsPerPage,
 }: Props) => {
   const isNextButtonDisabled = data?.length < rowsPerPage;
+  const hashWidths = { xs: 100, md: 115, lg: 160, xl: 200 };
 
   return (
     <TableContainer component={Paper}>
@@ -53,37 +54,29 @@ const TransactionsTable = ({
               key={hash}
               sx={{ flexDirection: 'row', flexWrap: 'nowrap' }}
             >
-              <TableCell component="th" scope="row" sx={{ width: 200 }}>
-                <CryptoAddressWithClipboard
-                  sx={{ width: { xs: 100, md: 120, lg: 150, xl: 220 } }}
-                >
+              <TableCell component="th" scope="row">
+                <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {hash}
                 </CryptoAddressWithClipboard>
               </TableCell>
               <TableCell>{time}</TableCell>
               <TableCell>
-                <CryptoAddressWithClipboard
-                  sx={{ width: { xs: 100, md: 120, lg: 150, xl: 220 } }}
-                >
+                <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {from}
                 </CryptoAddressWithClipboard>
               </TableCell>
-              <TableCell>{value}</TableCell>
+              <TableCell sx={{ whiteSpace: 'nowrap' }}>{value}</TableCell>
               <TableCell>
-                <CryptoAddressWithClipboard
-                  sx={{ width: { xs: 100, md: 120, lg: 150, xl: 220 } }}
-                >
+                <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {to}
                 </CryptoAddressWithClipboard>
               </TableCell>
               <TableCell
                 sx={{
                   maxWidth: {
-                    xs: 100,
-                    md: 120,
-                    lg: 150,
-                    xl: 200,
+                    xs: 150,
                   },
+                  whiteSpace: 'nowrap',
                 }}
               >
                 {fee}
@@ -103,7 +96,7 @@ const TransactionsTable = ({
             <TablePagination
               showLastButton={false}
               rowsPerPageOptions={[5, 10, 25, 50]}
-              colSpan={3}
+              colSpan={6}
               count={-1}
               rowsPerPage={rowsPerPage}
               page={page - 1}

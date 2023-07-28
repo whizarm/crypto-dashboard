@@ -121,7 +121,7 @@ const Transactions = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Card title="Transactions" sx={{ height: 'auto' }}>
+          <Card title="Transactions" sx={{ pb: 8 }}>
             <TransactionsTable
               data={dataForTable}
               rowsPerPage={requestParams.offset}

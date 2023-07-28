@@ -1,6 +1,6 @@
 import { formatEther } from 'ethers';
 import { TransactionsData } from 'services';
-import { formatEtherscanTime, formatDateTime } from 'utils';
+import { formatEtherscanTime, formatDateTime, formatTokenAmount } from 'utils';
 
 export const transformDataForTable = (data?: TransactionsData) => {
   if (typeof data?.result === 'string' || !data?.result.length) return [];
@@ -16,12 +16,12 @@ export const transformDataForTable = (data?: TransactionsData) => {
       gasPrice, // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }: any) => ({
       blockNumber,
-      fee: formatEther(gasUsed * gasPrice),
+      fee: formatTokenAmount(formatEther(gasUsed * gasPrice), 'ETH'),
       from,
       hash,
       time: formatDateTime(formatEtherscanTime(timeStamp)),
       to,
-      value: formatEther(value),
+      value: formatTokenAmount(formatEther(value), 'ETH'),
     }),
   );
 };

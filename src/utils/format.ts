@@ -1,3 +1,5 @@
+import { DISPLAY_MAX_FRACTION_DIGITS } from 'config';
+
 export const formatDateTime = (date: number | Date) => {
   const dateObject = typeof date === 'number' ? new Date(date) : date;
 
@@ -16,7 +18,7 @@ export const formatEtherscanTime = (time: number) =>
 
 export const tokenFormatter = new Intl.NumberFormat(undefined, {
   style: 'decimal',
-  maximumFractionDigits: 8,
+  maximumFractionDigits: DISPLAY_MAX_FRACTION_DIGITS,
 });
 
 export const formatTokenAmount = (
