@@ -29,7 +29,7 @@ const Transactions = () => {
     blockchain: DEFAULT_BLOCKCHAIN,
     page: 1,
     offset: 10,
-    sort: 'asc',
+    sort: 'desc',
   };
 
   const [requestParams, setRequestParams] = useState(initialParams);

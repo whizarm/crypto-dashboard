@@ -18,7 +18,7 @@ export const transactionsApi = createApi({
         blockchain,
         page = 1,
         offset = 10,
-        sort = 'asc',
+        sort = 'desc',
       }: TransactionsRequestParams) => {
         const queryParams = { address, blockchain, page, offset, sort };
         switch (blockchain) {

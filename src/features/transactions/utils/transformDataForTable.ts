@@ -16,7 +16,7 @@ export const transformDataForTable = (data?: TransactionsData) => {
       gasPrice, // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }: any) => ({
       blockNumber,
-      fee: formatTokenAmount(formatEther(gasUsed * gasPrice), 'ETH'),
+      fee: formatTokenAmount(formatEther(BigInt(gasUsed * gasPrice)), 'ETH'),
       from,
       hash,
       time: formatDateTime(formatEtherscanTime(timeStamp)),
