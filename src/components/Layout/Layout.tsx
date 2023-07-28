@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import { Box, Container, CssBaseline, Toolbar } from '@mui/material';
 import AppBar from './AppBar';
 import MenuDrawer from './MenuDrawer';
 
-export const Layout = () => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const Layout = ({ children }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -31,7 +34,7 @@ export const Layout = () => {
         <Toolbar />
 
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Outlet />
+          {children}
         </Container>
       </Box>
     </Box>
