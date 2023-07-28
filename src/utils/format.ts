@@ -13,8 +13,8 @@ export const formatDateTime = (date: number | Date) => {
   }).format(dateObject);
 };
 
-export const formatEtherscanTime = (time: number) =>
-  parseInt(time.toString().padEnd(13, '0'));
+export const formatEtherscanTime = (time: string | number) =>
+  parseInt((typeof time === 'number' ? time.toString() : time).padEnd(13, '0'));
 
 export const tokenFormatter = new Intl.NumberFormat(undefined, {
   style: 'decimal',

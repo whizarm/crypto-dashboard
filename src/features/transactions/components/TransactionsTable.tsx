@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Paper,
   Table,
@@ -10,12 +9,12 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import { TransactionsData } from 'services';
 import { CryptoAddressWithClipboard } from 'components/CryptoAddress';
+import { TransactionsTableRow } from '../utils/transformDataForTable';
 import TransactionTablePaginationActions from './TransactionTablePaginationActions';
 
 type Props = {
-  data: TransactionsData;
+  data: TransactionsTableRow[];
   rowsPerPage: number | undefined;
   page: number | undefined;
   handleChangePage: (
@@ -49,7 +48,7 @@ const TransactionsTable = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(({ hash, from, fee, time, to, value }: any) => (
+          {data.map(({ hash, from, fee, time, to, value }) => (
             <TableRow
               key={hash}
               sx={{ flexDirection: 'row', flexWrap: 'nowrap' }}
