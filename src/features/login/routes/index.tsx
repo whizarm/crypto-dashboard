@@ -6,7 +6,7 @@ const loginRoutes = [
   {
     path: LOGIN_ROUTE,
     element: <Login />,
-    title: '',
+    title: 'Crypto Dashboard',
   },
 ];
 

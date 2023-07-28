@@ -51,7 +51,7 @@ const AppBar = ({ isOpen, toggleDrawer }: Props) => {
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  marginRight: { xs: '24px', sm: '36px' },
+                  marginRight: { xs: '6px', sm: '36px' },
                   ...(isOpen && { display: 'none' }),
                 }}
               >

@@ -4,7 +4,7 @@ import { Title } from 'components/Title';
 
 type Props = {
   height?: number;
-  title: string;
+  title?: string;
   children?: React.ReactNode;
   sx?: SxProps;
 };
@@ -20,7 +20,7 @@ export const Card = ({ children, height, title, sx }: Props) => (
       ...sx,
     }}
   >
-    <Title>{title}</Title>
+    {!!title && <Title>{title}</Title>}
     {children}
   </Paper>
 );
