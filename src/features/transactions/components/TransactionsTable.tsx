@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   Paper,
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  Typography,
 } from '@mui/material';
 import { CryptoAddressWithClipboard } from 'components/CryptoAddress';
 import { TransactionsTableRow } from '../utils/transformDataForTable';
@@ -15,8 +17,9 @@ import TransactionTablePaginationActions from './TransactionTablePaginationActio
 
 type Props = {
   data: TransactionsTableRow[];
-  rowsPerPage: number | undefined;
+  isLoading: boolean;
   page: number | undefined;
+  rowsPerPage: number | undefined;
   handleChangePage: (
     event: React.MouseEvent<HTMLButtonElement> | null,
     page: number,
@@ -26,6 +29,7 @@ type Props = {
 
 const TransactionsTable = ({
   data,
+  isLoading,
   page = 1,
   rowsPerPage = 10,
   handleChangePage,
@@ -47,7 +51,7 @@ const TransactionsTable = ({
             <TableCell>Fee</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody sx={{ position: 'relative' }}>
           {data.map(({ hash, from, fee, time, to, value }) => (
             <TableRow
               key={hash}
@@ -82,10 +86,36 @@ const TransactionsTable = ({
               </TableCell>
             </TableRow>
           ))}
+          {isLoading && (
+            <TableRow
+              sx={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                background: 'rgba(255,255,255,0.65)',
+                top: '0',
+                display: 'flex',
+                justifyContent: 'center',
+                paddingTop: '50px',
+              }}
+            >
+              <TableCell>
+                <CircularProgress size={40} />
+              </TableCell>
+            </TableRow>
+          )}
           {!data.length && (
             <TableRow>
-              <TableCell colSpan={6} sx={{ py: 6, textAlign: 'center' }}>
-                No transactions found
+              <TableCell
+                colSpan={6}
+                sx={{
+                  py: 6,
+                  textAlign: 'center',
+                }}
+              >
+                <Typography variant="h6" color="text.secondary">
+                  No transactions
+                </Typography>
               </TableCell>
             </TableRow>
           )}

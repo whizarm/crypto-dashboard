@@ -29,13 +29,27 @@ interface Transaction {
   functionName: string;
 }
 
-type ApiErrorMsg =
+type ApiSuccessMsg =
   | 'OK'
-  | 'NOTOK'
   | 'OK-Missing/Invalid API Key, rate limit of 1/5sec applied';
 
-export interface TransactionsData {
-  status: '0' | '1';
-  message: ApiErrorMsg;
-  result: Transaction[] | [];
-}
+type ApiError =
+  | 'Invalid API Key'
+  | 'Max rate limit reached, please use API Key for higher rate limit'
+  | 'Error! Missing Or invalid Action name'
+  | 'Error! Block number already pass'
+  | 'Error! Invalid address format'
+  | 'Contract source code not verified'
+  | 'Query Timeout occured. Please select a smaller result dataset';
+
+export type TransactionsData =
+  | {
+      status: '1';
+      message: ApiSuccessMsg;
+      result: Transaction[] | [];
+    }
+  | {
+      status: '0';
+      message: 'NOTOK' | 'No transactions found';
+      result: ApiError;
+    };

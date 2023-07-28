@@ -30,6 +30,6 @@ export const useWalletInfo = () => {
     error,
     isLoading,
     network,
-    balances: getNetworkTotals(data),
+    balances: getNetworkTotals(!error ? data : undefined),
   };
 };

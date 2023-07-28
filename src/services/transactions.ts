@@ -1,13 +1,13 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import {
   TransactionsData,
   TransactionsRequestParams,
 } from './types/transactions';
-import { getEtherscanUrl } from './eth/etherscan';
+import { etherscanBaseQuery, getEtherscanUrl } from './eth/etherscan';
 
 export const transactionsApi = createApi({
   reducerPath: 'transactionsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https:' }),
+  baseQuery: etherscanBaseQuery,
   endpoints: (builder) => ({
     getTransactionsByAddressAndNetwork: builder.query<
       TransactionsData,

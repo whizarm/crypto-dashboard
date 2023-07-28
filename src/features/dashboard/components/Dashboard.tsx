@@ -4,7 +4,7 @@ import Statistics from './Statistics';
 import Wallets from './Wallets';
 
 const Dashboard = () => {
-  /*const {loading, error} = */ useWalletInfo();
+  useWalletInfo();
 
   return (
     <Grid container spacing={3}>

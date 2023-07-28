@@ -9,7 +9,7 @@ import Statistic from './Statistic';
 import { Card } from 'components/Card';
 
 const Statistics = () => {
-  const { /* isLoading, error */ balances, network } = useWalletInfo();
+  const { isLoading, balances, network } = useWalletInfo();
   const { usd, nativeToken, totalIn, totalOut, totalTxs } = balances;
   const symbol = network?.nativeCurrency.symbol;
   const icon = network?.iconUrls[0];
@@ -25,26 +25,31 @@ const Statistics = () => {
         title="Native token balance"
         value={formatTokenAmount(nativeToken, symbol)}
         Icon={icon ?? ''}
+        isLoading={isLoading}
       />
       <Statistic
         title="USD balance"
         value={formatUsdAmount(usd)}
         Icon={AccountBalanceIcon}
+        isLoading={isLoading}
       />
       <Statistic
         title="Total inflows"
         value={formatTokenAmount(totalIn, symbol)}
         Icon={TrendingUpIcon}
+        isLoading={isLoading}
       />
       <Statistic
         title="Total outflows"
         value={formatTokenAmount(totalOut, symbol)}
         Icon={TrendingDownIcon}
+        isLoading={isLoading}
       />
       <Statistic
         title="Total transactions count"
         value={totalTxs}
         Icon={PaymentIcon}
+        isLoading={isLoading}
       />
     </Grid>
   );

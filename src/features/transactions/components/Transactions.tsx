@@ -7,6 +7,8 @@ import {
   Select,
   SelectChangeEvent,
   MenuItem,
+  Alert,
+  AlertTitle,
 } from '@mui/material';
 import { DEFAULT_BLOCKCHAIN } from 'config';
 import {
@@ -34,7 +36,7 @@ const Transactions = () => {
 
   const [requestParams, setRequestParams] = useState(initialParams);
 
-  const { data /*, error, isLoading*/ } =
+  const { data, isError, isLoading } =
     useGetTransactionsByAddressAndNetworkQuery(requestParams, {
       skip: !requestParams.address || !requestParams.blockchain,
     });
@@ -122,13 +124,22 @@ const Transactions = () => {
 
         <Grid item xs={12}>
           <Card title="Transactions" sx={{ pb: 8 }}>
-            <TransactionsTable
-              data={dataForTable}
-              rowsPerPage={requestParams.offset}
-              page={requestParams.page}
-              handleChangePage={pageChangeHandler}
-              handleChangeRowsPerPage={rowsPerPageChangeHandler}
-            />
+            {isError ? (
+              <Alert severity="error">
+                <AlertTitle>
+                  An error occurred while getting data from the server
+                </AlertTitle>
+              </Alert>
+            ) : (
+              <TransactionsTable
+                data={dataForTable}
+                rowsPerPage={requestParams.offset}
+                page={requestParams.page}
+                handleChangePage={pageChangeHandler}
+                handleChangeRowsPerPage={rowsPerPageChangeHandler}
+                isLoading={isLoading}
+              />
+            )}
           </Card>
         </Grid>
       </Grid>
