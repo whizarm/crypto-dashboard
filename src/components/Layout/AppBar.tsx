@@ -1,4 +1,4 @@
-import { DynamicWidget } from '@dynamic-labs/sdk-react';
+import { DynamicWidget, useDynamicContext } from '@dynamic-labs/sdk-react';
 import { DRAWER_WIDTH } from 'config';
 import { useCurrentRoute } from 'hooks';
 import {
@@ -9,8 +9,11 @@ import {
   styled,
   Toolbar,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 type Props = {
   isOpen: boolean;
@@ -18,7 +21,12 @@ type Props = {
 };
 
 const AppBar = ({ isOpen, toggleDrawer }: Props) => {
+  const theme = useTheme();
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const currentRoute = useCurrentRoute();
+  const { isAuthenticated, setShowDynamicUserProfile } = useDynamicContext();
+
+  const openLoginModal = () => setShowDynamicUserProfile(true);
 
   return (
     <StyledAppBar position="absolute" open={isOpen}>
@@ -35,7 +43,7 @@ const AppBar = ({ isOpen, toggleDrawer }: Props) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={8}>
             <Box display="flex" alignItems="center">
               <IconButton
                 edge="start"
@@ -43,7 +51,7 @@ const AppBar = ({ isOpen, toggleDrawer }: Props) => {
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  marginRight: '36px',
+                  marginRight: { xs: '24px', sm: '36px' },
                   ...(isOpen && { display: 'none' }),
                 }}
               >
@@ -60,10 +68,29 @@ const AppBar = ({ isOpen, toggleDrawer }: Props) => {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box display="flex" justifyContent="end" alignItems="center">
-              <DynamicWidget />
+          <Grid item xs={4}>
+            <Box
+              display={isAuthenticated && onlySmallScreen ? 'none' : 'flex'}
+              justifyContent="end"
+              alignItems="center"
+            >
+              <DynamicWidget
+                innerButtonComponent={onlySmallScreen ? 'Connect' : undefined}
+              />
             </Box>
+            {isAuthenticated && onlySmallScreen && (
+              <Box display="flex" justifyContent="end" alignItems="center">
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="open login modal"
+                  size="small"
+                  onClick={openLoginModal}
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+            )}
           </Grid>
         </Grid>
       </Toolbar>
