@@ -10,7 +10,6 @@ import {
   Alert,
   AlertTitle,
 } from '@mui/material';
-import { DEFAULT_BLOCKCHAIN } from 'config';
 import {
   TransactionsRequestParams,
   useGetTransactionsByAddressAndNetworkQuery,
@@ -21,14 +20,17 @@ import { ToggleButtons } from 'components/ToggleButtons';
 import { CryptoAddress } from 'components/CryptoAddress';
 import TransactionsTable from './TransactionsTable';
 import { transformDataForTable } from '../utils/transformDataForTable';
+import { useConnectedBlockchain } from 'hooks';
 
 const Transactions = () => {
   const { primaryWallet, connectedWallets } = useDynamicContext();
+  const connectedBlockchain = useConnectedBlockchain();
   const supportedBlockchains = useSupportedBlockchains();
 
   const initialParams: TransactionsRequestParams = {
     address: primaryWallet?.address ?? '',
-    blockchain: DEFAULT_BLOCKCHAIN,
+    blockchain:
+      connectedBlockchain?.vanityName ?? connectedBlockchain?.name ?? '',
     page: 1,
     offset: 10,
     sort: 'desc',
