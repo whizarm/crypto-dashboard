@@ -23,11 +23,11 @@ import TransactionsTable from './TransactionsTable';
 import { transformDataForTable } from '../utils/transformDataForTable';
 
 const Transactions = () => {
-  const { connectedWallets } = useDynamicContext();
+  const { primaryWallet, connectedWallets } = useDynamicContext();
   const supportedBlockchains = useSupportedBlockchains();
 
   const initialParams: TransactionsRequestParams = {
-    address: connectedWallets[0]?.address ?? '',
+    address: primaryWallet?.address ?? '',
     blockchain: DEFAULT_BLOCKCHAIN,
     page: 1,
     offset: 10,
