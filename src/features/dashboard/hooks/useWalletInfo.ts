@@ -3,26 +3,23 @@ import {
   useGetWalletInfoByAddressAndNetworkQuery,
   WalletInfoHookParams,
 } from 'services';
-import { DEFAULT_BLOCKCHAIN } from 'config';
 import { getNetworkTotals } from '../utils/getNetworkTotals';
+import { useConnectedBlockchain } from 'hooks';
 
 export const useWalletInfo = () => {
-  const { connectedWallets, networkConfigurations } = useDynamicContext();
+  const { connectedWallets } = useDynamicContext();
+  const network = useConnectedBlockchain();
 
   const requestParams: WalletInfoHookParams = {
     addresses: connectedWallets?.map((w) => w.address) ?? [],
-    blockchain: DEFAULT_BLOCKCHAIN,
+    blockchain: network?.vanityName ?? network?.name ?? '',
   };
 
   const { data, error, isLoading } = useGetWalletInfoByAddressAndNetworkQuery(
     requestParams,
     {
-      skip: !requestParams.addresses.length,
+      skip: !requestParams.addresses.length || !requestParams.blockchain,
     },
-  );
-
-  const network = networkConfigurations?.evm?.find(
-    (n) => (n.vanityName ?? n.name) === DEFAULT_BLOCKCHAIN,
   );
 
   return {

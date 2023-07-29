@@ -5,6 +5,7 @@ import {
   WalletInfoRequestParams,
 } from './types/walletInfo';
 import { getEthplorerWalletInfoUrl } from './eth/ethplorer';
+import { getBinplorerWalletInfoUrl } from './bsc/binplorer';
 
 export const walletInfoApi = createApi({
   reducerPath: 'walletInfoApi',
@@ -24,6 +25,8 @@ export const walletInfoApi = createApi({
           switch (queryParams.blockchain) {
             case 'Ethereum':
               return getEthplorerWalletInfoUrl(queryParams);
+            case 'BNB Smart Chain':
+              return getBinplorerWalletInfoUrl(queryParams);
             default:
               throw new Error('This blockchain is not yet supported');
           }
