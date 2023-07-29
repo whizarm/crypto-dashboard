@@ -4,6 +4,7 @@ import {
   TransactionsRequestParams,
 } from './types/transactions';
 import { etherscanBaseQuery, getEtherscanUrl } from './eth/etherscan';
+import { getBscscanUrl } from './bsc/bscscan';
 
 export const transactionsApi = createApi({
   reducerPath: 'transactionsApi',
@@ -24,6 +25,8 @@ export const transactionsApi = createApi({
         switch (blockchain) {
           case 'Ethereum':
             return getEtherscanUrl(queryParams);
+          case 'BNB Smart Chain':
+            return getBscscanUrl(queryParams);
           default:
             throw new Error('This blockchain is not yet supported');
         }

@@ -5,14 +5,16 @@ export const useSupportedBlockchains = () => {
   const { networkConfigurations } = useDynamicContext();
 
   const supportedBlockchains = networkConfigurations?.evm
-    ?.filter(
-      ({ vanityName }) =>
-        !!vanityName && SUPPORTED_BLOCKCHAINS.includes(vanityName),
-    )
-    .map(({ iconUrls, vanityName }) => ({
-      iconUrl: iconUrls[0],
-      value: vanityName ?? '',
-    }));
+    ?.filter(({ vanityName, name }) => {
+      const blockchain = vanityName ?? name;
+      return !!blockchain && SUPPORTED_BLOCKCHAINS.includes(blockchain);
+    })
+    .map(({ iconUrls, vanityName, name }) => {
+      return {
+        iconUrl: iconUrls[0],
+        value: vanityName ?? name ?? '',
+      };
+    });
 
   return supportedBlockchains;
 };

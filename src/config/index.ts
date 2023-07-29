@@ -1,4 +1,4 @@
-const SUPPORTED_BLOCKCHAINS = ['Ethereum', 'Polygon']; // corresponding to vanityName property of blockchain in Dynamic SDK
+const SUPPORTED_BLOCKCHAINS = ['Ethereum', 'BNB Smart Chain']; // corresponding to Dynamic SDK vanityName ?? name of a blockchain
 const DEFAULT_BLOCKCHAIN = 'Ethereum';
 
 const DISPLAY_MAX_FRACTION_DIGITS = 9;

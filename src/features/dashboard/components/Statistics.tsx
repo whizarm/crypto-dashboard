@@ -13,7 +13,7 @@ const Statistics = () => {
   const { usd, nativeToken, totalIn, totalOut, totalTxs } = balances;
   const symbol = network?.nativeCurrency.symbol;
   const icon = network?.iconUrls[0];
-  const networkName = network?.vanityName;
+  const networkName = network?.vanityName ?? network?.name;
 
   return (
     <Grid container spacing={3} justifyContent="center">

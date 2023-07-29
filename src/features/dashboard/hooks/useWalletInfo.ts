@@ -22,7 +22,7 @@ export const useWalletInfo = () => {
   );
 
   const network = networkConfigurations?.evm?.find(
-    (n) => n.vanityName === DEFAULT_BLOCKCHAIN,
+    (n) => (n.vanityName ?? n.name) === DEFAULT_BLOCKCHAIN,
   );
 
   return {

@@ -22,7 +22,7 @@ export const getEtherscanUrl = (params: TransactionsRequestParams) => {
     apikey: import.meta.env.VITE_ETHERSCAN_API_KEY,
   };
 
-  return getUrlStrWithParams('', etherscanParams);
+  return getUrlStrWithParams(BASE_URL, etherscanParams);
 };
 
 export const etherscanBaseQuery: BaseQueryFn<
@@ -30,7 +30,7 @@ export const etherscanBaseQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (...args) => {
-  const res = await fetchBaseQuery({ baseUrl: BASE_URL })(...args);
+  const res = await fetchBaseQuery({ baseUrl: 'https:' })(...args);
   const data = res.data as TransactionsData;
 
   // "0" means error in etherscan api
