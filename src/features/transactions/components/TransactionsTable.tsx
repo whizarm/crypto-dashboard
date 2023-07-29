@@ -96,7 +96,7 @@ const TransactionsTable = ({
                 top: '0',
                 display: 'flex',
                 justifyContent: 'center',
-                paddingTop: '50px',
+                paddingTop: '25px',
               }}
             >
               <TableCell>
