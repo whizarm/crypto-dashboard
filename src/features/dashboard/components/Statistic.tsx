@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import { indigo, grey } from '@mui/material/colors';
+import unknownIcon from 'assets/unknownIcon.png';
 
 type Props = {
   Icon: typeof SvgIcon | string;
@@ -36,7 +37,9 @@ const Statistic = ({ Icon, isLoading, title, value }: Props) => (
             }}
           >
             {typeof Icon === 'string' ? (
-              <img src={Icon} height={40} width={40} />
+              <object data={Icon} type="image/svg+xml" height={40} width={40}>
+                <img src={unknownIcon} height={40} width={40} />
+              </object>
             ) : (
               <Icon sx={{ fontSize: 40 }} color="primary" />
             )}
