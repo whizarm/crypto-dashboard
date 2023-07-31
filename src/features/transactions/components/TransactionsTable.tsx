@@ -99,7 +99,7 @@ const TransactionsTable = ({
                 paddingTop: '25px',
               }}
             >
-              <TableCell>
+              <TableCell sx={{ border: 'none' }}>
                 <CircularProgress size={40} />
               </TableCell>
             </TableRow>
@@ -110,11 +110,12 @@ const TransactionsTable = ({
                 colSpan={6}
                 sx={{
                   py: 6,
+                  height: '130px',
                   textAlign: 'center',
                 }}
               >
                 <Typography variant="h6" color="text.secondary">
-                  No transactions
+                  {!isLoading && 'No transactions'}
                 </Typography>
               </TableCell>
             </TableRow>

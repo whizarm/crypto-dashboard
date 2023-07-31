@@ -1,4 +1,7 @@
-import { TransactionsRequestParams } from 'services/types/transactions';
+import {
+  TransactionsData,
+  TransactionsRequestParams,
+} from 'services/types/transactions';
 import { getUrlStrWithParams } from 'utils';
 
 const BASE_URL = 'https://api.bscscan.com/api';
@@ -14,4 +17,11 @@ export const getBscscanUrl = (params: TransactionsRequestParams) => {
   };
 
   return getUrlStrWithParams(BASE_URL, etherscanParams);
+};
+
+export const handleBscscanResponse = (res: TransactionsData) => {
+  // "0" means error in bscscan api
+  if (res.status === '0' && res.message !== 'No transactions found') {
+    throw new Error(res.result);
+  }
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDynamicContext } from '@dynamic-labs/sdk-react';
 import {
   FormControl,
@@ -10,17 +10,14 @@ import {
   Alert,
   AlertTitle,
 } from '@mui/material';
-import {
-  TransactionsRequestParams,
-  useGetTransactionsByAddressAndNetworkQuery,
-} from 'services';
-import { useSupportedBlockchains } from 'hooks';
+import { TransactionsRequestParams } from 'services';
+import { useSupportedBlockchains, useConnectedBlockchain } from 'hooks';
 import { Card } from 'components/Card';
 import { ToggleButtons } from 'components/ToggleButtons';
 import { CryptoAddress } from 'components/CryptoAddress';
 import TransactionsTable from './TransactionsTable';
 import { transformDataForTable } from '../utils/transformDataForTable';
-import { useConnectedBlockchain } from 'hooks';
+import { useTransactionsData } from '../hooks/useTransactionsData';
 
 const Transactions = () => {
   const { primaryWallet, connectedWallets } = useDynamicContext();
@@ -37,11 +34,16 @@ const Transactions = () => {
   };
 
   const [requestParams, setRequestParams] = useState(initialParams);
+  const { data, isLoading, isError } = useTransactionsData(requestParams);
 
-  const { data, isError, isLoading } =
-    useGetTransactionsByAddressAndNetworkQuery(requestParams, {
-      skip: !requestParams.address || !requestParams.blockchain,
-    });
+  useEffect(() => {
+    if (initialParams.blockchain) {
+      setRequestParams((params) => ({
+        ...params,
+        blockchain: initialParams.blockchain,
+      }));
+    }
+  }, [initialParams.blockchain]);
 
   const selectAddressHandler = ({ target }: SelectChangeEvent) => {
     const { value } = target;
@@ -111,7 +113,7 @@ const Transactions = () => {
                 labelId="select-connected-wallet-label"
                 id="select-connected-wallet"
                 value={requestParams.address}
-                label="WalletX"
+                label="Pick wallet"
                 onChange={selectAddressHandler}
               >
                 {connectedWallets?.map(({ address }) => (

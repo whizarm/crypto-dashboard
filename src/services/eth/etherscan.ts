@@ -1,10 +1,4 @@
 import {
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  fetchBaseQuery,
-} from '@reduxjs/toolkit/dist/query';
-import {
   TransactionsData,
   TransactionsRequestParams,
 } from 'services/types/transactions';
@@ -25,23 +19,9 @@ export const getEtherscanUrl = (params: TransactionsRequestParams) => {
   return getUrlStrWithParams(BASE_URL, etherscanParams);
 };
 
-export const etherscanBaseQuery: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (...args) => {
-  const res = await fetchBaseQuery({ baseUrl: 'https:' })(...args);
-  const data = res.data as TransactionsData;
-
+export const handleEtherscanResponse = (res: TransactionsData) => {
   // "0" means error in etherscan api
-  if (data.status === '0' && data.message !== 'No transactions found') {
-    return {
-      error: {
-        status: 'CUSTOM_ERROR',
-        error: data.result,
-      },
-    };
+  if (res.status === '0' && res.message !== 'No transactions found') {
+    throw new Error(res.result);
   }
-
-  return res;
 };
