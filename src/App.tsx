@@ -1,16 +1,16 @@
 import {
   DynamicAuthProvider,
   MuiThemeProvider,
-  ReduxProvider,
+  QueryProvider,
   RoutingProvider,
 } from 'providers';
 
 const App = () => (
   <DynamicAuthProvider>
     <MuiThemeProvider>
-      <ReduxProvider>
+      <QueryProvider>
         <RoutingProvider />
-      </ReduxProvider>
+      </QueryProvider>
     </MuiThemeProvider>
   </DynamicAuthProvider>
 );
