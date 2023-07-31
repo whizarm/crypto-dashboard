@@ -50,6 +50,11 @@ export type TransactionsData =
     }
   | {
       status: '0';
-      message: 'NOTOK' | 'No transactions found';
+      message: 'NOTOK';
       result: ApiError;
+    }
+  | {
+      status: '0';
+      message: 'No transactions found';
+      result: [];
     };
