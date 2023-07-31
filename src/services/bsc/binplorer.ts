@@ -1,12 +1,10 @@
-import { WalletInfoRequestParams } from 'services/types/walletInfo';
+import { WalletRequestParams } from 'services/types/wallets';
 import { getUrlStrWithParams } from 'utils';
 
 const BASE_URL = 'https://api.binplorer.com';
 const GET_WALLET_INFO = '/getAddressInfo/';
 
-export const getBinplorerWalletInfoUrl = ({
-  address,
-}: WalletInfoRequestParams) => {
+export const getBinplorerWalletInfoUrl = ({ address }: WalletRequestParams) => {
   const binplorerParams = {
     showETHTotals: 'true',
     showTxsCount: 'true',

@@ -1,4 +1,4 @@
-import { WalletInfoData } from 'services';
+import { WalletsData } from 'services';
 
 export type userBalances = {
   nativeToken: number | null;
@@ -9,7 +9,7 @@ export type userBalances = {
 };
 
 export const getNetworkTotals = (
-  data: WalletInfoData | undefined,
+  data: WalletsData | undefined,
 ): userBalances => {
   if (!data?.length) {
     return {

@@ -1,12 +1,10 @@
-import { WalletInfoRequestParams } from 'services/types/walletInfo';
+import { WalletRequestParams } from 'services/types/wallets';
 import { getUrlStrWithParams } from 'utils';
 
 const BASE_URL = 'https://api.ethplorer.io';
 const GET_WALLET_INFO = '/getAddressInfo/';
 
-export const getEthplorerWalletInfoUrl = ({
-  address,
-}: WalletInfoRequestParams) => {
+export const getEthplorerWalletInfoUrl = ({ address }: WalletRequestParams) => {
   const ethplorerParams = {
     showETHTotals: 'true',
     showTxsCount: 'true',

@@ -1,8 +1,6 @@
+import { useQuery } from 'react-query';
 import { useDynamicContext } from '@dynamic-labs/sdk-react';
-import {
-  useGetWalletInfoByAddressAndNetworkQuery,
-  WalletInfoHookParams,
-} from 'services';
+import { getWalletsByAddressesAndNetwork, WalletsHookParams } from 'services';
 import { getNetworkTotals } from '../utils/getNetworkTotals';
 import { useConnectedBlockchain } from 'hooks';
 
@@ -10,23 +8,26 @@ export const useWalletInfo = () => {
   const { connectedWallets } = useDynamicContext();
   const network = useConnectedBlockchain();
 
-  const requestParams: WalletInfoHookParams = {
+  const requestParams: WalletsHookParams = {
     addresses: connectedWallets?.map((w) => w.address) ?? [],
     blockchain: network?.vanityName ?? network?.name ?? '',
   };
 
-  const { data, error, isLoading } = useGetWalletInfoByAddressAndNetworkQuery(
-    requestParams,
+  const apiResults = useQuery(
+    ['transactions', requestParams],
+    () => getWalletsByAddressesAndNetwork(requestParams),
     {
-      skip: !requestParams.addresses.length || !requestParams.blockchain,
+      enabled: !!requestParams.addresses.length && !!requestParams.blockchain,
     },
   );
 
+  const balances = getNetworkTotals(
+    !apiResults.error ? apiResults.data : undefined,
+  );
+
   return {
-    data,
-    error,
-    isLoading,
+    ...apiResults,
     network,
-    balances: getNetworkTotals(!error ? data : undefined),
+    balances,
   };
 };

@@ -1,9 +1,9 @@
-export interface WalletInfoHookParams {
+export interface WalletsHookParams {
   addresses: string[];
   blockchain: string;
 }
 
-export interface WalletInfoRequestParams {
+export interface WalletRequestParams {
   address: string;
   blockchain: string;
 }
@@ -48,7 +48,7 @@ interface TokenBalance {
   rawBalance: string;
 }
 
-export interface WalletInfo {
+export interface Wallet {
   address: string;
   ETH: {
     price: PriceInfo;
@@ -61,4 +61,4 @@ export interface WalletInfo {
   tokens?: TokenBalance[];
 }
 
-export type WalletInfoData = WalletInfo[];
+export type WalletsData = (Wallet | undefined)[];
