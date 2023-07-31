@@ -49,6 +49,7 @@ const Transactions = () => {
     const { value } = target;
     setRequestParams((params) => ({
       ...params,
+      page: initialParams.page,
       address: value,
     }));
   };
@@ -59,6 +60,7 @@ const Transactions = () => {
   ) => {
     setRequestParams((params) => ({
       ...params,
+      page: initialParams.page,
       blockchain: value,
     }));
   };
@@ -79,7 +81,7 @@ const Transactions = () => {
     const { value } = target;
     setRequestParams((params) => ({
       ...params,
-      page: 1,
+      page: initialParams.page,
       offset: parseInt(value),
     }));
   };
