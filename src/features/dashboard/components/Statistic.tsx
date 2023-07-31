@@ -37,9 +37,7 @@ const Statistic = ({ Icon, isLoading, title, value }: Props) => (
             }}
           >
             {typeof Icon === 'string' ? (
-              <object data={Icon} type="image/svg+xml" height={40} width={40}>
-                <img src={unknownIcon} height={40} width={40} />
-              </object>
+              <img src={Icon || unknownIcon} height={40} width={40} />
             ) : (
               <Icon sx={{ fontSize: 40 }} color="primary" />
             )}
