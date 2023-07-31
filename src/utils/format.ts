@@ -30,6 +30,10 @@ export const formatTokenAmount = (
   }
 
   const value = typeof amount === 'string' ? parseFloat(amount) : amount;
+
+  if (!symbol) {
+    return tokenFormatter.format(value);
+  }
   return [tokenFormatter.format(value), symbol].join(' ');
 };
 

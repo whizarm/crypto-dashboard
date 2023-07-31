@@ -9,6 +9,10 @@ export const getUrlStrWithParams = (
     val.toString(),
   ]);
 
+  if (!castedParams.length) {
+    return baseUrl;
+  }
+
   const searchParams = new URLSearchParams(castedParams).toString();
   return `${baseUrl}?${searchParams}`;
 };
