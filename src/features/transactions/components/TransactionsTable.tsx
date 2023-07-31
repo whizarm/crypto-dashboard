@@ -57,19 +57,23 @@ const TransactionsTable = ({
               key={hash}
               sx={{ flexDirection: 'row', flexWrap: 'nowrap' }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ overflow: 'visible' }}
+              >
                 <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {hash}
                 </CryptoAddressWithClipboard>
               </TableCell>
               <TableCell>{time}</TableCell>
-              <TableCell>
+              <TableCell sx={{ overflow: 'visible' }}>
                 <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {from}
                 </CryptoAddressWithClipboard>
               </TableCell>
               <TableCell sx={{ whiteSpace: 'nowrap' }}>{value}</TableCell>
-              <TableCell>
+              <TableCell sx={{ overflow: 'visible' }}>
                 <CryptoAddressWithClipboard sx={{ width: hashWidths }}>
                   {to}
                 </CryptoAddressWithClipboard>

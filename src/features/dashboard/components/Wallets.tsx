@@ -87,6 +87,7 @@ const Wallets = () => {
 
 const StyledTableCell = styled(TableCell)({
   padding: '8px',
+  overflow: 'visible',
 });
 
 export default Wallets;
