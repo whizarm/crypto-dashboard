@@ -73,9 +73,17 @@ const AppBar = ({ isOpen, toggleDrawer }: Props) => {
               display={isAuthenticated && onlySmallScreen ? 'none' : 'flex'}
               justifyContent="end"
               alignItems="center"
+              sx={{
+                '& #dynamic-widget': {
+                  background: 'white',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                },
+              }}
             >
               <DynamicWidget
                 innerButtonComponent={onlySmallScreen ? 'Connect' : undefined}
+                buttonClassName=""
               />
             </Box>
             {isAuthenticated && onlySmallScreen && (
