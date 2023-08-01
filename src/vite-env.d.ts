@@ -8,4 +8,8 @@ declare global {
     interface Matchers<R = void>
       extends TestingLibraryMatchers<typeof expect.stringContaining, R> {}
   }
+  namespace vitest {
+    interface Matchers<R = void>
+      extends TestingLibraryMatchers<typeof expect.stringContaining, R> {}
+  }
 }

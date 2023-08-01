@@ -1,6 +1,6 @@
 export default {
-  status: '1',
-  message: 'OK',
+  status: '1' as const,
+  message: 'OK' as const,
   result: [
     {
       blockNumber: '13384202',

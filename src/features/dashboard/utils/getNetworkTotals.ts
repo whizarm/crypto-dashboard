@@ -1,6 +1,6 @@
 import { WalletsData } from 'services';
 
-export type userBalances = {
+export type UserBalances = {
   nativeToken: number | null;
   usd: number | null;
   totalIn: number | null;
@@ -10,7 +10,7 @@ export type userBalances = {
 
 export const getNetworkTotals = (
   data: WalletsData | undefined,
-): userBalances => {
+): UserBalances => {
   if (!data?.length) {
     return {
       nativeToken: null,
@@ -29,7 +29,7 @@ export const getNetworkTotals = (
     totalTxs: 0,
   };
 
-  return <userBalances>data.reduce((totals, wallet) => {
+  return <UserBalances>data.reduce((totals, wallet) => {
     const { nativeToken, usd, totalIn, totalOut, totalTxs } = totals;
     return {
       nativeToken: nativeToken + (wallet?.ETH?.balance ?? 0),

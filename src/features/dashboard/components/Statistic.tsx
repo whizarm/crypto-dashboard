@@ -9,7 +9,7 @@ import {
 import { indigo, grey } from '@mui/material/colors';
 import unknownIcon from 'assets/unknownIcon.png';
 
-type Props = {
+export type Props = {
   Icon: typeof SvgIcon | string;
   isLoading: boolean;
   title: string;
@@ -37,7 +37,12 @@ const Statistic = ({ Icon, isLoading, title, value }: Props) => (
             }}
           >
             {typeof Icon === 'string' ? (
-              <img src={Icon || unknownIcon} height={40} width={40} />
+              <img
+                src={Icon || unknownIcon}
+                height={40}
+                width={40}
+                alt="blockchain icon"
+              />
             ) : (
               <Icon sx={{ fontSize: 40 }} color="primary" />
             )}

@@ -15,7 +15,7 @@ import { CryptoAddressWithClipboard } from 'components/CryptoAddress';
 import { TransactionsTableRow } from '../utils/transformDataForTable';
 import TransactionTablePaginationActions from './TransactionTablePaginationActions';
 
-type Props = {
+export type Props = {
   data: TransactionsTableRow[];
   isLoading: boolean;
   page: number | undefined;

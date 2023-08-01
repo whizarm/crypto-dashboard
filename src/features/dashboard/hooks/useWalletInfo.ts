@@ -14,7 +14,7 @@ export const useWalletInfo = () => {
   };
 
   const apiResults = useQuery(
-    ['transactions', requestParams],
+    ['wallets', requestParams],
     () => getWalletsByAddressesAndNetwork(requestParams),
     {
       enabled: !!requestParams.addresses.length && !!requestParams.blockchain,
