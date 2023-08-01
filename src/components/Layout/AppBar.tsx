@@ -15,7 +15,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-type Props = {
+export type Props = {
   isOpen: boolean;
   toggleDrawer: () => void;
 };

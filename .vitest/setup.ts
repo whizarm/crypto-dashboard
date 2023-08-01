@@ -9,6 +9,7 @@ vi.mock('@dynamic-labs/sdk-react', async () => {
   );
   return {
     ...actual,
+    DynamicWidget: () => 'Connect your wallet',
     useDynamicContext: () => dynamicContext,
   };
 });

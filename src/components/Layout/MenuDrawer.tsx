@@ -23,7 +23,7 @@ const MenuDrawer = ({ isOpen, toggleDrawer }: Props) => {
   const drawerVariant = matchDownMd ? 'temporary' : 'permanent';
 
   return (
-    <StyledDrawer variant={drawerVariant} open={isOpen}>
+    <StyledDrawer variant={drawerVariant} open={isOpen} role="complementary">
       <Toolbar
         sx={{
           display: 'flex',

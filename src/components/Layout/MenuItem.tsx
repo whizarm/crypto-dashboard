@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-type Props = {
+export type Props = {
   Icon: JSX.Element;
   path: string;
   title: string;
